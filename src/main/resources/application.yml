@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: zuul-server
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://127.0.0.1:8787/eureka/}
+
+zuul:
+  routes:
+    service-1:
+      path: /**
+      serviceId: eureka-client
